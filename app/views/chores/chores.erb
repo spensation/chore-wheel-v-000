@@ -1,0 +1,9 @@
+<h1>CHORES!!</h1>
+<h2>Welcome, <%=@user.username%></h2>
+<%@chores.each do |chore|%>
+<h3>chore <%=chore.id%></h3>
+<h4> user: <%=chore.user.username%></h2>
+<%end%>
+
+<a href="/chores/new">Create a new chore!</a>
+<a href="/logout">Log out</a>
