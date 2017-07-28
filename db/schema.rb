@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728010237) do
+ActiveRecord::Schema.define(version: 20170728163316) do
 
   create_table "chore_tasks", force: :cascade do |t|
     t.integer "chore_id"
@@ -25,8 +25,7 @@ ActiveRecord::Schema.define(version: 20170728010237) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string  "title"
-    t.integer "chore_id"
+    t.string "title"
   end
 
   create_table "users", force: :cascade do |t|

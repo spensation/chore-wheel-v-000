@@ -1,0 +1,17 @@
+<h1><%= @chore.title%></h1>
+<h2><%= @chore.user.username%></h2>
+<br></br>
+<h3>Expectations:</h3>
+<% @chore.tasks.each do |task| %>
+<li>
+  <h3><%= task.title %></h3>
+</li>
+<%end%>
+
+
+<a href="/chores">Back to all the chores</a>
+<a href="/chores/<%= @chore.slug%>/edit">Edit chore</a>
+<form action="/chores/<%= @chore.slug%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <button type="submit">Delete Chore</button>
+</form>

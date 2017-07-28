@@ -1,0 +1,13 @@
+<h1>New Chore</h1>
+<form action="/chores" method="POST">
+  <p>Create a New Chore:</p>
+  <input type="text" name="chore[title]" id="chore_title" placeholder="git'er done!">
+  <input type="text" name="user[username]" id="user_username" placeholder="lucky duck">
+
+  <br></br>
+  <h3>Assign tasks to the chore:</h3
+  <% Task.all.each do |task| %>
+    <input type="checkbox" name="tasks[]" id="<%=task.title%>" value="<%= task.id %>"><%=task.title%></input>
+  <% end %>
+  <button type="submit" name="submit">submit</button>
+</form>

@@ -1,3 +1,4 @@
+require 'pry'
 class SessionsController < ApplicationController
 
   get '/login' do
@@ -9,10 +10,11 @@ class SessionsController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(:username => params[:username])
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
+    @user = User.find_by(username: params[:user][:username])
 
+    if @user && @user.authenticate(params[:user][:password])
+      session[:user_id] = @user.id
+      
       redirect "/chores"
     else
       redirect "/login"

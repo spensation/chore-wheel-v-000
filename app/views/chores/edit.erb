@@ -1,0 +1,32 @@
+<h1>Edit a chore</h1>
+<form action="/chores/<%=@chore.slug%>" method="POST">
+  <label>Title: <%= @chore.title%></label>
+
+  <br></br>
+
+  <input type="hidden" name="_method" id="hidden" value="patch">
+
+  <br></br>
+
+  <input type="text" name="chore[title]" id="chore_title" placeholder="git'er dun'" value="<%= @chore.title%>">
+
+  <br></br>
+
+  <input type="text" name="user[username]" id="user_username" placeholder="lucky duck" value="<%= @chore.user.username%>">
+  <br></br>
+
+  <%Task.all.each do |task|%>
+    <input type="checkbox" name="tasks[]" value="<%= task.id %>" id="<%= task.title %>" <%='checked' if @chore.tasks.include?(task) %>><%=task.title%>
+  <%end%>
+
+  <br></br>
+
+  <label>and/or, create a new task:</label>
+
+  <br></br>
+
+    <input  type="text" name="tasks[]" id="task_title" placeholder="Task">
+
+  <br></br>
+  <input type="submit" value="submit">
+</form>
