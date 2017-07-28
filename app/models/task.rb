@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  belongs_to :chore
   has_many :chore_tasks
-  has_one :user, through: :chore
+  has_many :chores, through: :chore_tasks
+  has_many :users, through: :chores
 end

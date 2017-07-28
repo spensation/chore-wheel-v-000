@@ -5,4 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
+use ChoresController
+use UsersController
+use SessionsController
 run ApplicationController

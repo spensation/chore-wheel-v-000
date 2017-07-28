@@ -1,5 +1,20 @@
 class Chore < ActiveRecord::Base
   belongs_to :user
   has_many :chore_tasks
-  has_many :task, through: :chore_tasks
+  has_many :tasks, through: :chore_tasks
+
+  def self.find_by_slug(slugged)
+    found = []
+    self.all.each do |obj|
+      if slugged == obj.slug
+        found << obj
+      end
+    end
+    found[0]
+  end
+
+  def slug
+    strip_chars_array = self.title.downcase.scan(/[a-z0-9]+/)
+    slug = strip_chars_array.join("-")
+  end
 end
