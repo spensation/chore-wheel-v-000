@@ -5,7 +5,7 @@
   <input type="text" name="user[username]" id="user_username" placeholder="lucky duck">
 
   <br></br>
-  <h3>Assign tasks to the chore:</h3
+  <h3>Assign tasks to the chore:</h3>
   <% Task.all.each do |task| %>
     <input type="checkbox" name="tasks[]" id="<%=task.title%>" value="<%= task.id %>"><%=task.title%></input>
   <% end %>
