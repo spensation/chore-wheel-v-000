@@ -1,3 +1,4 @@
+
 <h1>CHORES!!</h1>
 <h2>Welcome, <%=@user.username%></h2>
 <h3>Chores deadline is Thursday at 10pm.</h3>
@@ -5,6 +6,7 @@
    <% @chores.each do |chore|%>
    <br></br>
      <h4><a href="/chores/<%= chore.slug%>"><%= chore.title%></h4>
+
      <h4><a href="/users/<%= chore.user.id%>"><%= chore.user.username%></h4>
    <%end%>
 </div>

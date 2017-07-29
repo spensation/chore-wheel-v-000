@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     post "/signup" do
       @user = User.new(:username => params[:user][:username], :email => params[:user][:email], :password => params[:user][:password])
 
-      if !params[:user][:username].empty? && !params[:user][:email].empty? && @user.save
+      if @user.save
         session[:user_id] = @user.id
         redirect "/chores"
       else

@@ -1,5 +1,7 @@
 require 'pry'
+require 'rack-flash'
 class ChoresController < ApplicationController
+  use Rack::Flash
 
   get '/chores' do
     if !session[:user_id]
@@ -25,8 +27,15 @@ class ChoresController < ApplicationController
     @chore.user = User.find_or_create_by(username: params[:user][:username])
     @chore.task_ids = params["tasks"]
 
-    @chore.save
-    redirect to "chores/#{@chore.slug}"
+    if @chore.save
+      flash[:message] = "Successfully created chore."
+
+      redirect to "chores/#{@chore.slug}"
+    else
+      flash[:message] = "There was a problem. Please try that again."
+
+      erb :'chores/new'
+    end
   end
 
   get '/chores/:slug' do
@@ -44,8 +53,13 @@ class ChoresController < ApplicationController
     @chore.update(title: params[:chore][:title])
     @chore.user = User.find_or_create_by(username: params[:user][:username])
     @chore.task_ids = params["tasks"]
-    @chore.save
-    redirect "chores/#{@chore.slug}"
+    if @chore.save
+      flash[:message] = "Successfully edited chore."
+      redirect "chores/#{@chore.slug}"
+    else
+      flash[:message] = "There seems to be a problem. Please try that again"
+      redirect "/chores/:slug/edit"
+    end
   end
 
   delete '/chores/:slug' do

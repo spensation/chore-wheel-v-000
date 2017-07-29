@@ -1,3 +1,6 @@
+<% if flash.has?(:message) %>
+  <h1><%=flash[:message]%></h1>
+<%end%>
 <h1>Edit a chore</h1>
 <form action="/chores/<%=@chore.slug%>" method="POST">
   <label>Title: <%= @chore.title%></label>
@@ -17,6 +20,7 @@
 
   <%Task.all.each do |task|%>
     <input type="checkbox" name="tasks[]" value="<%= task.id %>" id="<%= task.title %>" <%='checked' if @chore.tasks.include?(task) %>><%=task.title%>
+    <br></br>
   <%end%>
 
   <br></br>
