@@ -16,8 +16,12 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
-      @user = User.find_by_id(params[:id])
-      erb :'/users/show'
+      if !logged_in? && !current_user
+        redirect "/login"
+      else
+        @user = User.find_by_id(params[:id])
+        erb :'/users/show'
+      end
     end
 
     delete '/users/:id' do

@@ -5,7 +5,11 @@ class ApplicationController < Sinatra::Base
   set :views, 'app/views'
 
   get '/' do
-    erb :welcome
+    if logged_in?
+      redirect "/chores"
+    else
+      erb :welcome
+    end
   end
 
 
