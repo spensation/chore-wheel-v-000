@@ -1,9 +1,5 @@
 <h1><%= @chore.title%></h1>
-<h2><%= @chore.user.username%></h2>
-<form class="checkbox">
-  <label>Completed?</label>
-  <input type="submit" name="complete" value="Rock Star" id="complete">
-</form>
+<h2><a href="/users/<%= @chore.user.id%>"><%= @chore.user.username%></h2>
 <br></br>
 <h3>Expectations:</h3>
 <% @chore.tasks.each do |task| %>

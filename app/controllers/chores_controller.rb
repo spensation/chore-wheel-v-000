@@ -51,7 +51,6 @@ class ChoresController < ApplicationController
   patch '/chores/:slug' do
     @chore = Chore.find_by_slug(params[:slug])
     @chore.update(title: params[:chore][:title])
-    @chore.user = User.find_or_create_by(username: params[:user][:username])
     @chore.task_ids = params["tasks"]
     if @chore.save
       flash[:message] = "Successfully edited chore."

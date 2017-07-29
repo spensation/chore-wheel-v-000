@@ -4,12 +4,9 @@ class ApplicationController < Sinatra::Base
   set :session_secret, "my_application_secret"
   set :views, 'app/views'
 
+
   get '/' do
-    if logged_in?
-      redirect "/chores"
-    else
-      erb :welcome
-    end
+    erb :welcome
   end
 
 
@@ -22,5 +19,8 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
+    def current_user_logged_in?
+     current_user.id == session[:user_id]
+   end
   end
 end

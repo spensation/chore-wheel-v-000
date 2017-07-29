@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20170728163316) do
   create_table "chores", force: :cascade do |t|
     t.string  "title"
     t.integer "user_id"
-    t.boolean "completed", default: false
   end
 
   create_table "tasks", force: :cascade do |t|

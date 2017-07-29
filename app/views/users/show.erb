@@ -1,5 +1,11 @@
 <h1><%= @user.username%></h1>
+<p>ATTENTION!  Make sure that you are updating you own chore status!!</p>
 
+<form action="/users/<%=@user.id%>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="patch">
+  <button type="submit">Rock Star</button>
+</form>
+<br></br>
 <form action="/users/<%= @user.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <button type="submit">Delete User</button>

@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      
+
       redirect "/chores"
     else
       redirect "/login"
@@ -24,9 +24,9 @@ class SessionsController < ApplicationController
   get '/logout' do
     if logged_in?
       session.clear
-      redirect "/login"
-    else
       redirect "/"
+    else
+      redirect "/login"
     end
   end
 end

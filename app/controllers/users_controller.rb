@@ -1,4 +1,6 @@
+require 'rack-flash'
 class UsersController < ApplicationController
+  use Rack::Flash
 
     get "/signup" do
       erb :'/users/new'
@@ -16,17 +18,17 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
-      if !logged_in? && !current_user
-        redirect "/login"
+      if logged_in? && current_user_logged_in?
+        @user = current_user
+        @chore = Chore.find_by_slug(params[:slug])
+        erb :'users/show'
       else
-        @user = User.find_by_id(params[:id])
-        erb :'/users/show'
+        redirect "/login"
       end
     end
 
-    delete '/users/:id' do
-      @user = User.find_by_id(params[:id])
-      @user.destroy
-      redirect "/chores"
+    patch '/users/:id' do
+      erb :'/users/done'
     end
+
 end

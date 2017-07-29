@@ -1,6 +1,6 @@
 class Chore < ActiveRecord::Base
   validates :title, presence: true
-  
+
   belongs_to :user
   has_many :chore_tasks
   has_many :tasks, through: :chore_tasks
