@@ -1,5 +1,5 @@
 <h1><%= @chore.title%></h1>
-<h2><a href="/users/<%= @chore.user.id%>"><%= @chore.user.username%></h2>
+<h2><a href="/users/<%= @chore.user.id%>"><%= @chore.user.username%></a></h2>
 <br></br>
 <h3>Expectations:</h3>
 <% @chore.tasks.each do |task| %>

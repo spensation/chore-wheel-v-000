@@ -3,10 +3,8 @@
 <h3>Chores deadline is Thursday at 10pm.</h3>
 <div class="assignment">
    <% @chores.each do |chore|%>
-   <br></br>
-     <h4><a href="/chores/<%= chore.slug%>"><%= chore.title%></h4>
-
-     <h4><a href="/users/<%= chore.user.id%>"><%= chore.user.username%></h4>
+      <h3><a href="/chores/<%= chore.slug%>"><%= chore.title%></h3>
+      <h5><a href="/users/<%= chore.user.id%>"><%= chore.user.username%></h5>
    <%end%>
 </div>
 <br></br>
