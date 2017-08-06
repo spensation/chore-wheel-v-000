@@ -4,20 +4,27 @@
 
 <h1>New Chore</h1>
 <form action="/chores" method="POST">
-  <p>Create a new chore:</p>
-  <input type="text" name="chore[title]" id="chore_title" placeholder="ex: Kitchen">
-  <br></br>
-  <h3>Assign it to someone:</h3>
+  <h3>Choose a chore to do:</h3>
   <select>
-    <% @users.each do |user| %>
-    <option value="<% user.username%>"><%= user.username %></option>
+    <% @chores.each do |chore| %>
+    <option value="<% chore.title%>"><%= chore.title %></option>
     <% end %>
   </select>
+
   <br></br>
+
+  <p>Or create a new chore:</p>
+  <input type="text" name="chore[title]" id="chore_title" placeholder="ex: Kitchen">
+
+  <br></br>
+
   <h3>Assign tasks to the chore:</h3>
   <% Task.all.each do |task| %>
     <input type="checkbox" name="tasks[]" id="<%=task.title%>" value="<%= task.id %>"><%=task.title%></input>
-    <br></br>
   <% end %>
+
+  <br></br>
+  <input type="hidden" name="user[username]" id="user_username">
+
   <button type="submit" name="submit">submit</button>
 </form>

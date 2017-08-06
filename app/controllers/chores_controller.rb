@@ -4,19 +4,19 @@ class ChoresController < ApplicationController
   use Rack::Flash
 
   get '/chores' do
-    if !logged_in?
-      redirect "/login"
-    else
-      @chores = Chore.all
-      @user = User.find_by(params[:id])
-      erb :'chores/index'
-    end
+    if logged_in? && current_user_logged_in?
+        @user = User.find_by(params[:username])
+        @chores = Chore.all
+        erb :'/chores/index'
+      else
+        redirect '/login'
+      end
   end
 
   get '/chores/new' do
     if logged_in?
       @chores = Chore.all
-      @users = User.all
+      @user = current_user
       erb :'/chores/new'
     else
       redirect '/login'
@@ -25,7 +25,8 @@ class ChoresController < ApplicationController
 
   post '/chores' do
     @chore = Chore.create(title: params[:chore][:title])
-    @chore.user = User.find_or_create_by(username: params[:user][:username])
+    @user = current_user
+    #binding.pry
     @chore.task_ids = params["tasks"]
 
     if @chore.save
@@ -45,6 +46,7 @@ class ChoresController < ApplicationController
       redirect '/chores'
     else
       @chore = Chore.find_by_slug(params[:slug])
+      @user = current_user
       erb :'/chores/show'
     end
   end
@@ -55,6 +57,7 @@ class ChoresController < ApplicationController
       redirect '/login'
     else
       @chore = Chore.find_by_slug(params[:slug])
+      @user = current_user
       erb :'chores/edit'
     end
   end

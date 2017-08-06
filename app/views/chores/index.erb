@@ -8,7 +8,7 @@
 <div class="assignment">
    <% @chores.each do |chore|%>
       <h3><a href="/chores/<%= chore.slug%>"><%= chore.title%></h3>
-      <h5><a href="/users/<%= chore.user.id%>"><%= chore.user.username%></h5>
+      <h5><a href="/users/<%= @user.id%>"><%= @user.username%></h5>
    <%end%>
 </div>
 <br></br>
