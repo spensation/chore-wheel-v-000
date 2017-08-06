@@ -2,9 +2,10 @@
   <h1><%=flash[:message]%></h1>
 <%end%>
 
+
 <h1>All the Chores</h1>
    <% @chores.each do |chore|%>
-      <h3><a href="/chores/<%= chore.slug%>"><%= chore.title%></h3>
+      <h4><a href="/chores/<%= chore.slug%>"><%= chore.title%></h4>
    <%end%>
 
 <br></br>
