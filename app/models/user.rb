@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
   validates :username, :email, presence: true
   has_secure_password
 
-  belongs_to :cycle
+  has_one :cycle
 
 end

@@ -1,4 +1,4 @@
 class Cycle < ActiveRecord::Base
-  has_one :chore
-  has_one :user
+  belongs_to :chore
+  belongs_to :user
 end
