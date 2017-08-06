@@ -7,7 +7,12 @@
   <p>Create a new chore:</p>
   <input type="text" name="chore[title]" id="chore_title" placeholder="ex: Kitchen">
   <br></br>
-  <input type="select_box" name="user[username]" id="user_username" placeholder="username">
+  <h3>Assign it to someone:</h3>
+  <select>
+    <% @users.each do |user| %>
+    <option value="<% user.username%>"><%= user.username %></option>
+    <% end %>
+  </select>
   <br></br>
   <h3>Assign tasks to the chore:</h3>
   <% Task.all.each do |task| %>

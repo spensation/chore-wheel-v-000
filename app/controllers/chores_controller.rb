@@ -15,6 +15,8 @@ class ChoresController < ApplicationController
 
   get '/chores/new' do
     if logged_in?
+      @chores = Chore.all
+      @users = User.all
       erb :'/chores/new'
     else
       redirect '/login'
