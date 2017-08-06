@@ -2,11 +2,12 @@ require 'pry'
 class SessionsController < ApplicationController
 
   get '/login' do
-    if logged_in?
-      redirect '/chores'
-    else
+    # if logged_in?
+    #   redirect '/chores'
+    # else
+    #   flash[:message] = "There was a problem.  Please login again."
       erb :'/users/login'
-    end
+    # end
   end
 
   post '/login' do

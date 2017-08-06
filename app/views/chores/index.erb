@@ -2,15 +2,11 @@
   <h1><%=flash[:message]%></h1>
 <%end%>
 
-<h1>CHORES!!</h1>
-<h2>Welcome, <%= @user.username%></h2>
-<h3>Chores deadline is Thursday at 10pm.</h3>
-<div class="assignment">
+<h1>All the Chores</h1>
    <% @chores.each do |chore|%>
       <h3><a href="/chores/<%= chore.slug%>"><%= chore.title%></h3>
-      <h5><a href="/users/<%= @user.id%>"><%= @user.username%></h5>
    <%end%>
-</div>
+
 <br></br>
 <a href="/chores/new">Create a new chore!</a>
 <br></br>
