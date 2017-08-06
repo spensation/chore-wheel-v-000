@@ -1,20 +1,21 @@
+require 'pry'
 require 'rack-flash'
 class UsersController < ApplicationController
   use Rack::Flash
+
+    get "/users" do
+      @users = User.all
+      erb :'/users/index'
+    end
 
     get "/signup" do
       erb :'/users/new'
     end
 
     post "/signup" do
-      @user = User.new(:username => params[:user][:username], :email => params[:user][:email], :password => params[:user][:password])
-
-      if @user.save
-        session[:user_id] = @user.id
-        redirect "/chores"
-      else
-        redirect "/signup"
-      end
+      @user = User.create(params[:user])
+      session[:user_id] = @user.id
+      redirect "/chores"
     end
 
     get '/users/:id' do
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
         @chore = Chore.find_by_slug(params[:slug])
         erb :'users/show'
       else
+        flash[:message] = "Private user's page.  Please log in as user to view"
         redirect "/login"
       end
     end

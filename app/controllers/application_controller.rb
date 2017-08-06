@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user_logged_in?
-     current_user.id == session[:user_id]
+      current_user.id == session[:user_id]
    end
   end
 end

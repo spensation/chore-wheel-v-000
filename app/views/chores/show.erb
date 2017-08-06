@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <h1><%=flash[:message]%></h1>
+<%end%>
+
 <h1><%= @chore.title%></h1>
 <h2><a href="/users/<%= @chore.user.id%>"><%= @chore.user.username%></a></h2>
 <br></br>
@@ -13,7 +17,3 @@
 <br></br>
 <a href="/chores/<%= @chore.slug%>/edit">Edit chore</a>
 <br></br>
-<form action="/chores/<%= @chore.slug%>" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <button type="submit">Delete Chore</button>
-</form>

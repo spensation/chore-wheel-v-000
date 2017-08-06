@@ -2,16 +2,13 @@ require 'pry'
 class SessionsController < ApplicationController
 
   get '/login' do
-    if session[:user_id]
-      redirect "/chores"
-    else
-      erb :'/users/login'
-    end
+    erb :'/users/login'
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:user][:username])
 
+    @user = User.find_by(username: params[:user][:username])
+    #binding.pry
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
 

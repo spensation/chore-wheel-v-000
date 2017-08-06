@@ -4,18 +4,17 @@ class ChoresController < ApplicationController
   use Rack::Flash
 
   get '/chores' do
-    if !session[:user_id]
+    if !logged_in?
       redirect "/login"
     else
-      @user = User.find(session[:user_id])
       @chores = Chore.all
+      @user = User.find_by(params[:id])
       erb :'chores/index'
-
     end
   end
 
   get '/chores/new' do
-    if session[:user_id]
+    if logged_in?
       erb :'/chores/new'
     else
       redirect '/login'
@@ -39,13 +38,23 @@ class ChoresController < ApplicationController
   end
 
   get '/chores/:slug' do
-    @chore = Chore.find_by_slug(params[:slug])
-    erb :'/chores/show'
+    if !current_user_logged_in?
+      flash[:masseage] = "This page is resticted to user's access only"
+      redirect '/chores'
+    else
+      @chore = Chore.find_by_slug(params[:slug])
+      erb :'/chores/show'
+    end
   end
 
   get '/chores/:slug/edit' do
-    @chore = Chore.find_by_slug(params[:slug])
-    erb :'chores/edit'
+    if !current_user_logged_in?
+      flash[:masseage] = "This page is resticted to user's access only"
+      redirect '/login'
+    else
+      @chore = Chore.find_by_slug(params[:slug])
+      erb :'chores/edit'
+    end
   end
 
   patch '/chores/:slug' do
