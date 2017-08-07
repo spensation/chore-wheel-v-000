@@ -14,7 +14,7 @@ class CycleController < ApplicationController
   end
 
   post '/cycles' do
-    @cycle = Cycle.new()
+    @cycle = Cycle.new(user_id: params[:cycle][:user_id], chore_id: params[:cycle][:chore_id])
     binding.pry
     if @cycle.save
       redirect "/cycles/:id"
@@ -26,7 +26,7 @@ class CycleController < ApplicationController
   get '/cycles/:id' do
     if current_user_logged_in?
       @cycle = Cycle.find_by(params[:id])
-      @cycle.user = User.find_by(params[:id])
+      @user = User.find_by(params[:id])
       @cycle.chore = Chore.find_by(params[:id])
       #binding.pry
       erb :'/cycles/show'
