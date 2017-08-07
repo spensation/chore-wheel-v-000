@@ -1,16 +1,18 @@
 <form action="/cycles" method="POST">
   <h3>Choose a chore to do:</h3>
-  <select>
+  <select name="chore_choice">
     <% @chores.each do |chore| %>
-    <option value="<% chore.title%>"><%= chore.title %></option>
+    <option value="<% chore.id%>"><%= chore.title %></option>
     <% end %>
   </select>
 
 
   <h3>Assign it to a user</h3>
-  <select>
-    <% @users.each do |chore| %>
-    <option value="<% user.username%>"><%= user.username %></option>
+  <select name="user_choice">
+    <% @users.each do |user| %>
+    <option value="<% user.id%>"><%= user.username %></option>
     <% end %>
   </select>
+<br></br>
+  <button type="submit" name="submit">submit</button>
 </form>
