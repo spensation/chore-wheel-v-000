@@ -2,12 +2,13 @@ require 'pry'
 class SessionsController < ApplicationController
 
   get '/login' do
-    # if logged_in?
-    #   redirect '/chores'
-    # else
-    #   flash[:message] = "There was a problem.  Please login again."
+    if current_user_logged_in?
+      @user = current_user
+      redirect "/users/#{@user.id}"
+    else
+      flash[:message] = "Please enter valid username and password."
       erb :'/users/login'
-    # end
+    end
   end
 
   post '/login' do
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
 
-      erb :'/cycles/show'
+      erb :'/users/show'
     else
       redirect "/login"
     end
