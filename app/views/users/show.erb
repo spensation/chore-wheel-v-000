@@ -1,9 +1,11 @@
 <h1>Welcome back, <%= @user.username%>, it's that time again...</h1>
+<br></br>
 
 
-
-<a href="/cycles/new">Sign up for a new chore cycle!</a><br />
-<a href="/chores/new">Create a new chore!</a><br />
+<h2><a href="/cycles/new">Sign up for a new chore cycle!</a></h2>
+<br></br>
+<h4><a href="/chores/new">Create a new chore!</a></h4>
+<br></br>
 
 <form action="/users/<%=@user.id%>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="patch">
