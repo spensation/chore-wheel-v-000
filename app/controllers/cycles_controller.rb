@@ -4,9 +4,9 @@ class CycleController < ApplicationController
   use Rack::Flash
 
   get '/cycles/new' do
-    if logged_in?
+    if current_user_logged_in?
       @chores = Chore.all
-      @users = User.all
+      @user = current_user
       erb :'/cycles/new'
     else
       redirect '/'
@@ -14,10 +14,9 @@ class CycleController < ApplicationController
   end
 
   post '/cycles' do
-    @cycle = Cycle.create(params[:cycle])
-    @cycle.user = User.find_by(params[:user_id])
-    @cycle.chore = Chore.find_by(params[:chore_id])
-
+    @cycle = Cycle.new(params[:cycle])
+    @cycle.user = User.find_or_create_by(id: params[:user_id])
+    @cycle.chore = Chore.find_or_create_by(id: params[:chore_id])
     if @cycle.save
       redirect "/cycles/#{@cycle.id}"
     else
@@ -27,8 +26,9 @@ class CycleController < ApplicationController
 
   get '/cycles/:id' do
     if current_user_logged_in?
+      @user = current_user
       @cycle = Cycle.find_by_id(params[:id])
-      binding.pry
+
       erb :'/cycles/show'
     else
       redirect '/'
