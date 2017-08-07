@@ -1,5 +1,9 @@
-<h1><%= @user.username%></h1>
-<p>ATTENTION!  Make sure that you are updating you own chore status!!</p>
+<h1>Welcome back, <%= @user.username%>, it's that time again...</h1>
+
+
+
+<a href="/cycles/new">Sign up for a new chore cycle!</a><br />
+<a href="/chores/new">Create a new chore!</a><br />
 
 <form action="/users/<%=@user.id%>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="patch">
