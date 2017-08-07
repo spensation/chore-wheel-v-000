@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     post "/signup" do
       @user = User.create(params[:user])
       session[:user_id] = @user.id
-      redirect "/chores"
+      redirect "/users/#{@user.id}"
     end
 
     get '/users/:id' do
