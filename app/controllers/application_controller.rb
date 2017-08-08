@@ -21,6 +21,10 @@ class ApplicationController < Sinatra::Base
 
     def current_user_logged_in?
       current_user.id == session[:user_id]
-   end
+    end
+
+    def complete?
+      Cycle.complete = true
+    end
   end
 end

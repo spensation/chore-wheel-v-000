@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <h1><%=flash[:message]%></h1>
+<%end%>
+
 <h1>Welcome back, <%= @user.username%>, it's that time again...</h1>
 <br></br>
 
@@ -8,8 +12,9 @@
 <br></br>
 
 <h4>When you are done with your chore, let everyone know you are a:</h4>
-<form action="/users/<%=@user.id%>" method="POST">
+<form action="/cycles/<%=@cycle.id%>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="patch">
+  <input type="hidden" name="complete" id="hidden" value="true">
   <button type="submit">Rock Star</button>
 </form>
 <br></br>

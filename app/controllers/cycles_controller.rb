@@ -17,7 +17,7 @@ class CycleController < ApplicationController
     @cycle = Cycle.create(params[:cycle])
     @cycle.user = User.find_or_create_by(id: params[:user_id])
     @cycle.chore = Chore.find_or_create_by(id: params[:chore_id])
-    
+
     if @cycle.save
       redirect "/cycles/#{@cycle.id}"
     else
@@ -36,4 +36,14 @@ class CycleController < ApplicationController
     end
   end
 
+  patch '/cycles/:id' do
+    if current_user_logged_in?
+      @user = current_user
+      @cycle.update(params[:complete])
+      flash[:message] = "Way to go!  Your roommates have all been informed of your legendary status."
+      redirect "/users/#{@user.id}"
+    else
+      flash[:message] = "restricted action"
+      redirect "/"
+  end
 end

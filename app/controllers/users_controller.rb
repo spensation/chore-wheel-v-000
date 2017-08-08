@@ -29,8 +29,6 @@ class UsersController < ApplicationController
       end
     end
 
-    patch '/users/:id' do
-      
-    end
+
 
 end
