@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:id' do
-      erb :'/users/done'
+      
     end
 
 end

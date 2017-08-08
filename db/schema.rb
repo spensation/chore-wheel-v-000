@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170806221626) do
   create_table "cycles", force: :cascade do |t|
     t.integer "chore_id"
     t.integer "user_id"
+    t.boolean "complete", default: false
   end
 
   create_table "tasks", force: :cascade do |t|
