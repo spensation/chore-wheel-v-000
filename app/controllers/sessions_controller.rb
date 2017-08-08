@@ -2,7 +2,7 @@ require 'pry'
 class SessionsController < ApplicationController
 
   get '/login' do
-    if current_user_logged_in?
+    if logged_in?
       @user = current_user
       redirect "/users/#{@user.id}"
     else

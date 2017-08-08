@@ -4,8 +4,13 @@ class UsersController < ApplicationController
   use Rack::Flash
 
     get "/users" do
-      @users = User.all
-      erb :'/users/index'
+      if logged_in?
+        @users = User.all
+        erb :'/users/index'
+      else
+        flash[:message] = "Please login to view this page."
+        redirect "/login"
+      end
     end
 
     get "/signup" do
@@ -19,16 +24,18 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
+
       if logged_in? && current_user_logged_in?
+
         @user = current_user
-        @chore = Chore.find_by_slug(params[:slug])
+
+        @cycle = Cycle.find_or_create_by(id: params[:id])
+
+        #binding.pry
         erb :'users/show'
       else
         flash[:message] = "Private user's page.  Please log in as user to view"
         redirect "/login"
       end
     end
-
-
-
 end

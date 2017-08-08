@@ -39,11 +39,13 @@ class CycleController < ApplicationController
   patch '/cycles/:id' do
     if current_user_logged_in?
       @user = current_user
-      @cycle.update(params[:complete])
+      binding.pry
+      @cycle.update(params[:cycle])
       flash[:message] = "Way to go!  Your roommates have all been informed of your legendary status."
       redirect "/users/#{@user.id}"
     else
       flash[:message] = "restricted action"
       redirect "/"
+    end
   end
 end

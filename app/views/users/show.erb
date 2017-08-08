@@ -12,7 +12,7 @@
 <br></br>
 
 <h4>When you are done with your chore, let everyone know you are a:</h4>
-<form action="/cycles/<%=@cycle.id%>" method="POST">
+<form action="/cycles/<%= @cycle.id%>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="patch">
   <input type="hidden" name="complete" id="hidden" value="true">
   <button type="submit">Rock Star</button>
