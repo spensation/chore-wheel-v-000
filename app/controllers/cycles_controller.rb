@@ -14,9 +14,10 @@ class CycleController < ApplicationController
   end
 
   post '/cycles' do
-    @cycle = Cycle.new(params[:cycle])
+    @cycle = Cycle.create(params[:cycle])
     @cycle.user = User.find_or_create_by(id: params[:user_id])
     @cycle.chore = Chore.find_or_create_by(id: params[:chore_id])
+    
     if @cycle.save
       redirect "/cycles/#{@cycle.id}"
     else

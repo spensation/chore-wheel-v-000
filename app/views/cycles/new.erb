@@ -9,9 +9,7 @@
 
   <label for="user_id">Select a User</label>
 <select id='user_id' name='user_id' type='text'>
-<% @users.each do |user| %>
-  <option value="<%= user.id%>"> <%= user.username %> </option>
-<% end %>
+  <option value="<%= @user.id%>"> <%= @user.username %> </option>
 </select>
 
 <br></br>
