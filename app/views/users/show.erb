@@ -7,15 +7,17 @@
 <h4><a href="/chores/new">Create a new chore!</a></h4>
 <br></br>
 
+<h4>When you are done with your chore, let everyone know you are a:</h4>
 <form action="/users/<%=@user.id%>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="patch">
   <button type="submit">Rock Star</button>
 </form>
 <br></br>
+
+<a href="/logout">Log out</a>
+<br></br>
+
 <form action="/users/<%= @user.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <button type="submit">Delete User</button>
 </form>
-
-<br></br>
-<a href="/logout">Log out</a>
