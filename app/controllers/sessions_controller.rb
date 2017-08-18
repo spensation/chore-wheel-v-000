@@ -1,4 +1,5 @@
 require 'pry'
+require 'rack-flash'
 class SessionsController < ApplicationController
 
   get '/login' do
@@ -12,6 +13,7 @@ class SessionsController < ApplicationController
   end
 
   post '/login' do
+    #@cycle = Cycle.find_by(params[:id])
     @user = User.find_by(username: params[:user][:username])
     #binding.pry
     if @user && @user.authenticate(params[:user][:password])

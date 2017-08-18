@@ -29,8 +29,6 @@ class UsersController < ApplicationController
 
         @user = current_user
 
-        @cycle = Cycle.find_or_create_by(id: params[:id])
-
         #binding.pry
         erb :'users/show'
       else

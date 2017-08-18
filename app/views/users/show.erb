@@ -2,21 +2,17 @@
   <h1><%=flash[:message]%></h1>
 <%end%>
 
-<h1>Welcome back, <%= @user.username%>, it's that time again...</h1>
+<h1>Welcome back, <%= @user.username%>, have you finished your chores?</h1>
 <br></br>
 
+<ul>
+<% @user.chores.each do |chore| %>
+  <li> <%= chore.title %> </li>
+  <br />
+<% end %>
 
-<h2><a href="/cycles/new">Sign up for a new chore cycle!</a></h2>
-<br></br>
-<h4><a href="/chores/new">Create a new chore!</a></h4>
-<br></br>
 
-<h4>When you are done with your chore, let everyone know you are a:</h4>
-<form action="/cycles/<%= @cycle.id%>" method="POST">
-  <input type="hidden" name="_method" id="hidden" value="patch">
-  <input type="hidden" name="complete" id="hidden" value="true">
-  <button type="submit">Rock Star</button>
-</form>
+<h4><a href="/chores/new">Create a new chore</a></h4>
 <br></br>
 
 <a href="/logout">Log out</a>

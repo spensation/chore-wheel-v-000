@@ -1,9 +1,22 @@
 class Chore < ActiveRecord::Base
   validates :title, presence: true
 
-  has_one :cycle
   has_many :chore_tasks
   has_many :tasks, through: :chore_tasks
+  belongs_to :user
+
+  STATUS = {
+    :incomplete => 0
+    :complete => 1
+  }
+
+  def complete? 
+    self.status == STATUS[:complete]
+  end
+
+  def incomplete?
+    self.status == STATUS[:incomplete]
+  end
 
   def self.find_by_slug(slugged)
     found = []

@@ -24,7 +24,7 @@ class ChoresController < ApplicationController
 
   post '/chores' do
     @chore = Chore.create(title: params[:chore][:title])
-    #binding.pry
+    @chore.user = current_user
     @chore.task_ids = params["tasks"]
 
     if @chore.save
@@ -41,6 +41,7 @@ class ChoresController < ApplicationController
   get '/chores/:slug' do
     if logged_in?
       @chore = Chore.find_by_slug(params[:slug])
+      @user = current_user
       erb :'/chores/show'
     else
       flash[:massage] = "Please log in to view this page."
